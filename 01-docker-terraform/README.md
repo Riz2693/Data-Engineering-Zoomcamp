@@ -1,4 +1,4 @@
-# Question 1. What's the version of pip in the python:3.13 image? (1 point)
+#### Question 1. What's the version of pip in the python:3.13 image? (1 point)
 Answer : 25.3
 
 Solution :
