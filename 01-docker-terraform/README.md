@@ -1,4 +1,6 @@
-# Module 1 Homework: Docker & SQL
+Muhammad Faris Akbar
+
+### **Module 1 Homework: Docker & SQL**
 
 In this homework we'll prepare the environment and practice
 Docker and SQL
@@ -210,5 +212,6 @@ My solution: <LINK>
 
 Free course by @DataTalksClub: https://github.com/DataTalksClub/data-engineering-zoomcamp/
 ```
+
 
 
