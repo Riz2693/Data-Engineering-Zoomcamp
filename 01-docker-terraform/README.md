@@ -1,7 +1,6 @@
 #### Question 1. What's the version of pip in the python:3.13 image? (1 point)
-Answer : 25.3
-
-Solution :
+- Answer : 25.3
+- Solution :
 1. Run docker using command:
 ```bash
 docker run -it --rm -p 8888:8888 -v "${pwd}:/app" --entrypoint=bash python:3.13
@@ -178,6 +177,7 @@ My solution: <LINK>
 
 Free course by @DataTalksClub: https://github.com/DataTalksClub/data-engineering-zoomcamp/
 ```
+
 
 
 
