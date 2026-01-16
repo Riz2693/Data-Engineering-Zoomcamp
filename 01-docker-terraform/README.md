@@ -109,7 +109,7 @@ GROUP BY "Pickup Zone", "Dropoff Zone"
 ORDER BY "Jumlah Tip"  DESC
 ```
 
-#### Question 7. Terraform Workflow
+#### Question 7. Which of the following sequences describes the Terraform workflow for: 1) Downloading plugins and setting up backend, 2) Generating and executing changes, 3) Removing all resources? (1 point)
 Answer : terraform init, terraform apply -auto-approve, terraform destroy
 
 ## Learning in Public
@@ -132,3 +132,4 @@ Following along with this amazing free course - who else is learning data engine
 
 You can sign up here: https://github.com/DataTalksClub/data-engineering-zoomcamp/
 ```
+
