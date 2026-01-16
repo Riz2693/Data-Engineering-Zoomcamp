@@ -1,8 +1,6 @@
-### **Module 1 Homework: Docker & SQL**
-### **Muhammad Faris Akbar**
-
 ### Question 1. What's the version of pip in the python:3.13 image? (1 point)
 Answer : 25.3
+
 Solution :
 1. Run docker using command:
 ```bash
@@ -14,7 +12,7 @@ pip -V
 ```
 to check the pip version
 
-### Question 2.Given the docker-compose.yaml, what is the hostname and port that pgadmin should use to connect to the postgres database? (1 point)
+### Question 2. Given the docker-compose.yaml, what is the hostname and port that pgadmin should use to connect to the postgres database? (1 point)
 
 ```yaml
 services:
@@ -48,30 +46,22 @@ volumes:
     name: vol-pgadmin_data
 ```
 
-Answer: db:5432
+Answer : db:5432
 
 Solution: 
-<img width="940" height="747" alt="image" src="https://github.com/user-attachments/assets/48c6d6d9-4e9b-4ac6-bbec-91279eef64f3" />
+<img width="940" height="550" alt="image" src="https://github.com/user-attachments/assets/48c6d6d9-4e9b-4ac6-bbec-91279eef64f3" />
 
-```bash
-wget https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2025-11.parquet
+### Question 3. For the trips in November 2025, how many trips had a trip_distance of less than or equal to 1 mile? (1 point)
+Answer : 8,007
+
+Solution :
+```SQL
+SELECT count(1) AS "Jumlah Trip"
+FROM public.green_taxi_trips_november_2025 
+WHERE lpep_pickup_datetime >= '2025-11-01 00:00:00' 
+AND lpep_pickup_datetime < '2025-12-01 00:00:00'
+AND trip_distance <= 1
 ```
-
-You will also need the dataset with zones:
-
-```bash
-wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
-```
-
-## Question 3. Counting short trips
-
-For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2025-12-01', exclusive of the upper bound), how many trips had a `trip_distance` of less than or equal to 1 mile?
-
-- 7,853
-- 8,007
-- 8,254
-- 8,421
-
 
 ## Question 4. Longest trip for each day
 
@@ -188,6 +178,7 @@ My solution: <LINK>
 
 Free course by @DataTalksClub: https://github.com/DataTalksClub/data-engineering-zoomcamp/
 ```
+
 
 
 
