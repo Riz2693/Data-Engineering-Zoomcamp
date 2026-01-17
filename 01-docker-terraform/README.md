@@ -113,4 +113,5 @@ ORDER BY "Jumlah Tip"  DESC
 Answer : terraform init, terraform apply -auto-approve, terraform destroy
 
 #### Learning in Public
-https://www.linkedin.com/posts/m-faris-akbar-_github-datatalksclubdata-engineering-zoomcamp-activity-7418364049043685376-YPp-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
+- https://www.linkedin.com/posts/m-faris-akbar-_github-datatalksclubdata-engineering-zoomcamp-activity-7418364049043685376-YPp-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
+
