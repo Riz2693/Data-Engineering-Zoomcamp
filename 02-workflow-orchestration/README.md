@@ -1,119 +1,75 @@
 ### **Muhammad Faris Akbar**
 ---
 
-#### Question 1. What's the version of pip in the python:3.13 image? (1 point)
-- Answer : 25.3
+#### Question 1. Within the execution for Yellow Taxi data for the year 2020 and month 12: what is the uncompressed file size (i.e. the output file yellow_tripdata_2020-12.csv of the extract task)? (1 point)
+- Answer : 128.3 MiB
 - Solution :
-1. Run docker using command:
+1. Add a new command to the kestra command section by entering the following command:
 ```bash
-docker run -it --rm -p 8888:8888 -v "${pwd}:/app" --entrypoint=bash python:3.13
+- du -b {{render(vars.file)}} | awk '{printf "%.1f MiB\n", $1/1048576}'
 ```
-2. After entering the Docker environment, enter the command below to check the pip version
-```bash
-pip -V
-```
+![alt text](image.png)
 
-#### Question 2. Given the docker-compose.yaml, what is the hostname and port that pgadmin should use to connect to the postgres database? (1 point)
+2. Run the kestra flow, and check the file size in the execution logs section.
+![alt text](image-1.png)
 
-```yaml
-services:
-  db:
-    container_name: postgres
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'postgres'
-      POSTGRES_DB: 'ny_taxi'
-    ports:
-      - '5433:5432'
-    volumes:
-      - vol-pgdata:/var/lib/postgresql/data
+<br>
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "pgadmin@pgadmin.com"
-      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
-    ports:
-      - "8080:80"
-    volumes:
-      - vol-pgadmin_data:/var/lib/pgadmin
-
-volumes:
-  vol-pgdata:
-    name: vol-pgdata
-  vol-pgadmin_data:
-    name: vol-pgadmin_data
-```
-
-- Answer : db:5432
+#### Question 2. What is the rendered value of the variable file when the inputs taxi is set to green, year is set to 2020, and month is set to 04 during execution? (1 point)
+- Answer : green_tripdata_2020-04.csv
 - Solution: 
-<img width="940" height="550" alt="image" src="https://github.com/user-attachments/assets/48c6d6d9-4e9b-4ac6-bbec-91279eef64f3" />
 
-#### Question 3. For the trips in November 2025, how many trips had a trip_distance of less than or equal to 1 mile? (1 point)
-- Answer : 8,007
+1. To check the rendered value of a variable, you can check the labels in the execution section of the flow. Examples of rendered values for the file and taxi variables:
+![alt text](image-2.png)
+
+#### Question 3. How many rows are there for the Yellow Taxi data for all CSV files in the year 2020? (1 point)
+- Answer : 24,648,499
 - Solution :
+1. Due to the fact that in the CSV data for yellow taxis in 2020, there are 280 data points with years outside of 2020. Using time extraction alone is not sufficient to obtain valid results, so string matching is required to obtain the desired results. The following is the SQL query used:
+
 ```SQL
-SELECT count(1) AS "Jumlah Trip"
-FROM public.green_taxi_trips_november_2025 
-WHERE lpep_pickup_datetime >= '2025-11-01 00:00:00' 
-AND lpep_pickup_datetime < '2025-12-01 00:00:00'
-AND trip_distance <= 1
+SELECT 
+COUNT(1) AS "Jumlah Data"
+FROM public.yellow_tripdata
+WHERE filename LIKE '%2020%';
 ```
 
-#### Question 4. Which was the pick up day with the longest trip distance? Only consider trips with trip_distance less than 100 miles. (1 point)
-- Answer : 2025-11-14
+#### Question 4. How many rows are there for the Green Taxi data for all CSV files in the year 2020? (1 point)
+1. As before, in the 2020 green taxi data, there were 53 data points with years other than 2020, so string matching was required to obtain the desired results.
+- Answer : 1,734,051
 - Solution :
+
 ```SQL
-SELECT lpep_pickup_datetime AS "Tanggal Pickup", trip_distance AS "Jarak Trip"
-FROM public.green_taxi_trips_november_2025 
-WHERE trip_distance 
-IN 
-(SELECT MAX(trip_distance) FROM public.green_taxi_trips_november_2025 
-WHERE trip_distance < 100)
+SELECT 
+COUNT(1) AS "Jumlah Data"
+FROM public.green_tripdata
+WHERE filename LIKE '%2020%';
 ```
 
-#### Question 5. Which was the pickup zone with the largest total_amount (sum of all trips) on November 18th, 2025? (1 point)
-- Answer : East Harlem North
-- Solution :
-```SQL
-SELECT TZ."Zone" AS "Pickup Zone", COUNT(TZ."Zone") AS "Jumlah Pickup" 
-FROM public.green_taxi_trips_november_2025 GTT
-JOIN public.taxi_zone TZ
-ON GTT."PULocationID" = TZ."LocationID"
-WHERE 
-DATE(lpep_pickup_datetime) = '2025-11-18'
-GROUP BY "Pickup Zone"
-ORDER BY "Jumlah Pickup" DESC
-```
-
-#### Question 6. For the passengers picked up in the zone named "East Harlem North" in November 2025, which was the drop off zone that had the largest tip? (1 point)
-- Answer : Yorkville West
+#### Question 5. How many rows are there for the Yellow Taxi data for the March 2021 CSV file? (1 point)
+- Answer : 1,925,152
 - Solution :
 ```SQL
 SELECT 
-TZ_PU."Zone" AS "Pickup Zone", 
-TZ_DO."Zone" AS "Dropoff Zone", 
-MAX(GTT.tip_amount) AS "Jumlah Tip" 
-
-FROM public.green_taxi_trips_november_2025 GTT
-
-JOIN public.taxi_zone TZ_PU
-ON GTT."PULocationID" = TZ_PU."LocationID"
-JOIN public.taxi_zone TZ_DO
-ON GTT."DOLocationID" = TZ_DO."LocationID"
-
-WHERE
-TO_CHAR(GTT."lpep_pickup_datetime", 'YYYY-MM') = '2025-11' AND
-TZ_PU."Zone" = 'East Harlem North'
-
-GROUP BY "Pickup Zone", "Dropoff Zone"
-ORDER BY "Jumlah Tip"  DESC
+filename,
+COUNT(1) AS "Jumlah Data"
+FROM public.yellow_tripdata
+WHERE 
+filename LIKE '%2021-03%'
+GROUP BY filename;
 ```
 
-#### Question 7. Which of the following sequences describes the Terraform workflow for: 1) Downloading plugins and setting up backend, 2) Generating and executing changes, 3) Removing all resources? (1 point)
-Answer : terraform init, terraform apply -auto-approve, terraform destroy
+#### Question 6. How would you configure the timezone to New York in a Schedule trigger? (1 point)
+- Answer : Add a timezone property set to America/New_York in the Schedule trigger configuration
+- Solution : https://kestra.io/docs/workflow-components/triggers/schedule-trigger
+
+```bash
+triggers:
+  - id: ...
+    type: ...
+    cron: ...
+    timezone: America/New_York
+```
 
 #### Learning in Public
 - https://www.linkedin.com/posts/m-faris-akbar-_github-datatalksclubdata-engineering-zoomcamp-activity-7418364049043685376-YPp-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
