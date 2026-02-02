@@ -8,6 +8,7 @@
 ```bash
 - du -b {{render(vars.file)}} | awk '{printf "%.1f MiB\n", $1/1048576}'
 ```
+
 ![alt text](image.png)
 
 2. Run the kestra flow, and check the file size in the execution logs section.
