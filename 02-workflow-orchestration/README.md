@@ -26,7 +26,7 @@
 1. To check the rendered value of a variable, you can check the labels in the execution section of the flow. Examples of rendered values for the file and taxi variables:
 
 
-![alt text](image-2.png)
+![alt text](image-3.png)
 
 <br>
 
