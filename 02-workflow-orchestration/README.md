@@ -88,4 +88,4 @@ triggers:
 <br>
 
 #### Learning in Public
-- https://www.linkedin.com/posts/m-faris-akbar-_github-datatalksclubdata-engineering-zoomcamp-activity-7418364049043685376-YPp-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
+- https://www.linkedin.com/posts/m-faris-akbar-_dezoomcamp-dataengineering-datatalksclub-activity-7423964649672466432-bhJw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
