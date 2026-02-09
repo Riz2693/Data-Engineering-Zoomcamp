@@ -77,6 +77,8 @@ Question 5. What is the best strategy to make an optimized table in Big Query if
 - References :
 1. https://docs.cloud.google.com/bigquery/docs/clustered-tables
 
+<br>
+
 #### Question 9. Write a `SELECT count(*)` query FROM the materialized table you created. How many bytes does it estimate will be read? Why? (not graded)
 - Answer : 0 bytes, even though writing count(*) is like asking the database to count all the data in the database, which should result in a very large cost, BigQuery has a metadata cache that stores information about the characteristics of the datasets in the database and the queries to access them, so when accessing queries with count(*), BigQuery will only retrieve the data count from the metadata without scanning the data per column ('INFORMATION_SCHEMA. TABLE_STORAGE')
 
