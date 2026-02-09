@@ -1,60 +1,37 @@
 ### **Muhammad Faris Akbar**
 ---
 
-#### Question 1. Within the execution for Yellow Taxi data for the year 2020 and month 12: what is the uncompressed file size (i.e. the output file yellow_tripdata_2020-12.csv of the extract task)? (1 point)
-- Answer : 128.3 MiB
+#### Question 1. What is count of records for the 2024 Yellow Taxi Data? (1 point)
+- Answer : 20,332,093
 - Solution :
-1. Add a new command to the kestra command section by entering the following command:
-```bash
-- du -b {{render(vars.file)}} | awk '{printf "%.1f MiB\n", $1/1048576}'
-```
-
-
-![alt text](image.png)
-
-2. Run the kestra flow, and check the file size in the execution logs section.
-
-
-![alt text](image-1.png)
+<img width="213" height="40" alt="image" src="https://github.com/user-attachments/assets/2160ad57-6f01-46aa-8811-87eb850ba5b1" />
 
 <br>
 
-#### Question 2. What is the rendered value of the variable file when the inputs taxi is set to green, year is set to 2020, and month is set to 04 during execution? (1 point)
-- Answer : green_tripdata_2020-04.csv
+#### Question 2. Write a query to count the distinct number of PULocationIDs for the entire dataset on both the tables. What is the estimated amount of data that will be read when this query is executed on the External Table and the Table? (1 point)
+- Answer : 0 MB for the External Table and 155.12 MB for the Materialized Table
 - Solution: 
 
-1. To check the rendered value of a variable, you can check the labels in the execution section of the flow. Examples of rendered values for the file and taxi variables:
+1. When running the distinct query on External Table
+<img width="1326" height="680" alt="image" src="https://github.com/user-attachments/assets/c1554d42-2835-4e16-875a-c22b78701546" />
 
-
-![alt text](image-3.png)
-
-<br>
-
-#### Question 3. How many rows are there for the Yellow Taxi data for all CSV files in the year 2020? (1 point)
-- Answer : 24,648,499
-- Solution :
-1. Due to the fact that in the CSV data for yellow taxis in 2020, there are 280 data points with years outside of 2020. Using time extraction alone is not sufficient to obtain valid results, so string matching is required to obtain the desired results. The following is the SQL query used:
-
-```SQL
-SELECT 
-COUNT(1) AS "Jumlah Data"
-FROM public.yellow_tripdata
-WHERE filename LIKE '%2020%';
-```
+2. When running the distinct query on Materialized Table
+<img width="1326" height="632" alt="image" src="https://github.com/user-attachments/assets/3e611923-1172-490b-b290-a2bc1260ad23" />
 
 <br>
 
-#### Question 4. How many rows are there for the Green Taxi data for all CSV files in the year 2020? (1 point)
-1. As before, in the 2020 green taxi data, there were 53 data points with years other than 2020, so string matching was required to obtain the desired results.
-- Answer : 1,734,051
+#### Question 3. Write a query to retrieve the PULocationID from the table (not the external table) in BigQuery. Now write a query to retrieve the PULocationID and DOLocationID on the same table. Why are the estimated number of Bytes different? (1 point)
+- Answer : BigQuery is a columnar database, and it only scans the specific columns requested in the query. Querying two columns (PULocationID, DOLocationID) requires reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed.
 - Solution :
+1. BigQuery stores table data in columnar format, meaning it stores each column separately. Column-oriented databases are particularly efficient at scanning individual columns over an entire dataset.
+- References :
+1. https://docs.cloud.google.com/bigquery/docs/storage_overview
 
-```SQL
-SELECT 
-COUNT(1) AS "Jumlah Data"
-FROM public.green_tripdata
-WHERE filename LIKE '%2020%';
-```
+<br>
+
+#### Question 4. Question 4. How many records have a fare_amount of 0? (1 point)
+- Answer : 8,333
+- Solution :
 
 <br>
 
