@@ -67,10 +67,19 @@ Which zone had the highest revenue? (1 point)
     - Filter out records where dispatching_base_num IS NULL
     - Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
 What is the count of records in stg_fhv_tripdata? (1 point)
-- Answer : 
+- Answer : 43,244,693
 - Solution :
+
+1. Filter out records where dispatching_base_num IS NULL
+<img width="863" height="207" alt="image" src="https://github.com/user-attachments/assets/56d269a7-4e9b-44a2-a9ef-5fd23ba1fcde" />
+
+2. Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
+<img width="820" height="311" alt="image" src="https://github.com/user-attachments/assets/8ce642e7-4b7e-41fd-b98b-d95e44e64517" />
+
+3. Solutions in big queries
+<img width="1513" height="674" alt="image" src="https://github.com/user-attachments/assets/8425c921-a61a-44b0-95c0-0d73e17f50c9" />
 
 <br></br>
 
 #### Learning in Public
-- https://www.linkedin.com/posts/m-faris-akbar-_dezoomcamp-dataengineering-datatalksclub-activity-7426685640278437889-TBqk?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
+- https://www.linkedin.com/posts/m-faris-akbar-_dezoomcamp-dataengineering-datatalksclub-activity-7429162032651894784-xFGw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
