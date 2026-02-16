@@ -17,8 +17,8 @@ client = storage.Client.from_service_account_json(CREDENTIALS_FILE)
 # If commented initialize client with the following
 # client = storage.Client(project='zoomcamp-mod3-datawarehouse')
 
-taxi = ["yellow", "green"]
-year = [2019, 2020]
+# taxi = ["yellow", "green"]
+# year = [2019]
 MONTHS = [f"{i:02d}" for i in range(1, 13)]
 
 DOWNLOAD_DIR = "."
@@ -30,9 +30,13 @@ os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 bucket = client.bucket(BUCKET_NAME)
 
 
-def download_file(taxi, year, month):
-    url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{taxi}/{taxi}_tripdata_{year}-{month}.csv.gz"
-    file_path = os.path.join(DOWNLOAD_DIR, f"{taxi}_tripdata_{year}-{month}.csv.gz")
+# def download_file(taxi, year, month):
+def download_file(month):
+    # url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{taxi}/{taxi}_tripdata_{year}-{month}.csv.gz"
+    # file_path = os.path.join(DOWNLOAD_DIR, f"{taxi}_tripdata_{year}-{month}.csv.gz")
+
+    url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv/fhv_tripdata_2019-{month}.csv.gz"
+    file_path = os.path.join(DOWNLOAD_DIR, f"fhv_tripdata_2019-{month}.csv.gz")
 
     try:
         if os.path.exists(file_path):
@@ -110,9 +114,10 @@ def upload_to_gcs(file_path, max_retries=3):
 if __name__ == "__main__":
     create_bucket(BUCKET_NAME)
 
-    args = list(itertools.product(taxi, year, MONTHS))
+    # args = list(itertools.product(taxi, year, MONTHS))
     with ThreadPoolExecutor(max_workers=4) as executor:
-        file_paths = list(executor.map(lambda p: download_file(*p), args))
+        # file_paths = list(executor.map(lambda p: download_file(*p), args))
+        file_paths = list(executor.map(download_file, MONTHS))
 
     with ThreadPoolExecutor(max_workers=4) as executor:
         executor.map(upload_to_gcs, filter(None, file_paths))  # Remove None values
