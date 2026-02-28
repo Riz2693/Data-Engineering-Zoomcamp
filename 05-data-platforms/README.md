@@ -50,4 +50,4 @@ Question 3. Pipeline VariablesYou have a variable defined in pipeline.yml:variab
 <img width="1133" height="484" alt="image" src="https://github.com/user-attachments/assets/c75a436f-9eaa-40ff-a2ac-9dfeb5a9bcfb" />
 
 #### Learning in Public
-- https://www.linkedin.com/posts/m-faris-akbar-_dezoomcamp-dataengineering-datatalksclub-activity-7429162032651894784-xFGw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
+- https://www.linkedin.com/posts/m-faris-akbar-_modul-5-data-platforms-menggunakan-bruin-share-7433661704724713473-_5R5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
