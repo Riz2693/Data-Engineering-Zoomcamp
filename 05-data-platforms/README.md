@@ -1,74 +1,46 @@
-### **Muhammad Faris Akbar**
+<img width="947" height="379" alt="image" src="https://github.com/user-attachments/assets/51cb0699-97b8-43e4-8bc6-29769fa58d8d" />### **Muhammad Faris Akbar**
 ---
 
 #### Question 1. Bruin Pipeline StructureIn a Bruin project, what are the required files/directories? (1 point)
 - Answer : .bruin.yml and pipeline.yml (assets can be anywhere)
 - Solution :
-<img width="1482" height="360" alt="image" src="https://github.com/user-attachments/assets/6a692d6b-4d55-4ba1-ae8d-45fb76ebcef3" />
+<img width="428" height="233" alt="image" src="https://github.com/user-attachments/assets/323adde2-840a-4d97-ba1a-818201ff640a" />
 
 <br></br>
 
-#### Question 2. You've configured a generic test like this in your schema.yml:
-```yaml
-columns:
-  - name: payment_type
-    data_tests:
-      - accepted_values:
-          arguments:
-            values: [1, 2, 3, 4, 5]
-            quote: false
-```
-Your model fct_trips has been running successfully for months. A new value 6 now appears in the source data.
-What happens when you run dbt test --select fct_trips? (1 point)
+#### Question 2. Materialization Strategies You're building a pipeline that processes NYC taxi data organized by month based on pickup_datetime. Which incremental strategy is best for processing a specific interval period by deleting and inserting data for that time period? (1 point)
 - Answer : dbt will fail the test, returning a non-zero exit code
 - Solution : 
-<img width="1479" height="768" alt="image" src="https://github.com/user-attachments/assets/c161db39-26b6-4a74-a7f3-a4ff9cbd0c0f" />
+<img width="986" height="628" alt="image" src="https://github.com/user-attachments/assets/3488e868-711e-4a4c-a60a-dc7d6d22f360" />
 
-- References : https://docs.getdbt.com/reference/resource-properties/data-tests
+- References : https://getbruin.com/docs/bruin/assets/materialization.html#time-interval
 
 <br>
 
-#### Question 3. After running your dbt project, query the fct_monthly_zone_revenue model. What is the count of records in the fct_monthly_zone_revenue model? (1 point)
-- Answer : 12,184
+Question 3. Pipeline VariablesYou have a variable defined in pipeline.yml:variables: taxi_types: type: array items: type: string default: ["yellow", "green"]How do you override this when running the pipeline to only process yellow taxis? (1 point)
+- Answer : bruin run --var 'taxi_types=["yellow"]'
 - Solution :
-<img width="1519" height="617" alt="image" src="https://github.com/user-attachments/assets/84fca4cc-921a-4706-8663-5070eccfc71f" />
+<img width="947" height="379" alt="image" src="https://github.com/user-attachments/assets/6fc912e9-6e67-4a0f-b49c-9e5a532c0af4" />
+
+- References : https://getbruin.com/docs/bruin/getting-started/pipeline-variables.html#overriding-variables
+<br></br>
+
+#### Question 4. Running with DependenciesYou've modified the ingestion/trips.py asset and want to run it plus all downstream assets. Which command should you use? (1 point)
+- Answer : bruin run ingestion/trips.py --downstream
+- Solution :
+<img width="1133" height="484" alt="image" src="https://github.com/user-attachments/assets/c75a436f-9eaa-40ff-a2ac-9dfeb5a9bcfb" />
 
 <br></br>
 
-#### Question 4. Using the fct_monthly_zone_revenue table, find the pickup zone with the highest total revenue (revenue_monthly_total_amount) for Green taxi trips in 2020.
-
-Which zone had the highest revenue? (1 point)
-- Answer : East Harlem North
-- Solution :
-<img width="1453" height="612" alt="image" src="https://github.com/user-attachments/assets/2d5eaaa2-2477-409a-b852-bf66586855db" />
-
+#### Question 5. Quality Checks. You want to ensure the pickup_datetime column in your trips table never has NULL values. Which quality check should you add to your asset definition? (1 point)
+- Answer : name: not_null
+- References : https://getbruin.com/product/quality/
 <br></br>
 
-#### Question 5. Using the fct_monthly_zone_revenue table, what is the total number of trips (total_monthly_trips) for Green taxis in October 2019? (1 point)
-- Answer : 384,624
+#### Question 6. Lineage and DependenciesAfter building your pipeline, you want to visualize the dependency graph between assets. Which Bruin command should you use? (1 point)
+- Answer : bruin lineage
 - Solution :
-<img width="1464" height="629" alt="image" src="https://github.com/user-attachments/assets/e9092b58-7048-4991-a288-ff5ee28d5be8" />
-
-<br></br>
-
-#### Question 6. Create a staging model for the For-Hire Vehicle (FHV) trip data for 2019.
-
-1. Load the FHV trip data for 2019 into your data warehouse
-2. Create a staging model stg_fhv_tripdata with these requirements:
-    - Filter out records where dispatching_base_num IS NULL
-    - Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
-What is the count of records in stg_fhv_tripdata? (1 point)
-- Answer : 43,244,693
-- Solution :
-
-1. Filter out records where dispatching_base_num IS NULL
-<img width="863" height="207" alt="image" src="https://github.com/user-attachments/assets/56d269a7-4e9b-44a2-a9ef-5fd23ba1fcde" />
-
-2. Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
-<img width="820" height="311" alt="image" src="https://github.com/user-attachments/assets/8ce642e7-4b7e-41fd-b98b-d95e44e64517" />
-
-3. Solutions in big queries
-<img width="1513" height="674" alt="image" src="https://github.com/user-attachments/assets/8425c921-a61a-44b0-95c0-0d73e17f50c9" />
+<img width="1380" height="301" alt="image" src="https://github.com/user-attachments/assets/1f0478ab-cd7c-468d-9a85-7f58c1906593" />
 
 <br></br>
 
