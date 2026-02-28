@@ -1,4 +1,4 @@
-<img width="947" height="379" alt="image" src="https://github.com/user-attachments/assets/51cb0699-97b8-43e4-8bc6-29769fa58d8d" />### **Muhammad Faris Akbar**
+### **Muhammad Faris Akbar**
 ---
 
 #### Question 1. Bruin Pipeline StructureIn a Bruin project, what are the required files/directories? (1 point)
@@ -43,6 +43,11 @@ Question 3. Pipeline VariablesYou have a variable defined in pipeline.yml:variab
 <img width="1380" height="301" alt="image" src="https://github.com/user-attachments/assets/1f0478ab-cd7c-468d-9a85-7f58c1906593" />
 
 <br></br>
+
+#### Question 7. First-Time RunYou're running a Bruin pipeline for the first time on a new DuckDB database. What flag should you use to ensure tables are created from scratch? (1 point)
+- Answer : --full-refresh
+- Solution :
+<img width="1133" height="484" alt="image" src="https://github.com/user-attachments/assets/c75a436f-9eaa-40ff-a2ac-9dfeb5a9bcfb" />
 
 #### Learning in Public
 - https://www.linkedin.com/posts/m-faris-akbar-_dezoomcamp-dataengineering-datatalksclub-activity-7429162032651894784-xFGw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2WdgQBFNQvyaHEVM4pwzRNofINDz0G8dY
