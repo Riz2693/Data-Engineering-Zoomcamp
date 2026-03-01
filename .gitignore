@@ -7,3 +7,5 @@ __pycache__/
 logs/
 *.py[cod]
 *.db
+logs/runs
+logs/*.log
