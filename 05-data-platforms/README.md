@@ -9,7 +9,7 @@
 <br></br>
 
 #### Question 2. Materialization Strategies You're building a pipeline that processes NYC taxi data organized by month based on pickup_datetime. Which incremental strategy is best for processing a specific interval period by deleting and inserting data for that time period? (1 point)
-- Answer : dbt will fail the test, returning a non-zero exit code
+- Answer : time_interval - incremental based on a time column
 - Solution : 
 <img width="986" height="628" alt="image" src="https://github.com/user-attachments/assets/3488e868-711e-4a4c-a60a-dc7d6d22f360" />
 
